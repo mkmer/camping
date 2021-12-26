@@ -15,9 +15,9 @@ import datetime
 import os
 
 # Modify these values for your reservation
-mySites = ["56"]
+mySites = ["171"]
 days = 15
-StartDate = "2022-06-17"
+StartDate = "2022-06-26"
 
 # Calculate the end date
 EndDateDT = datetime.datetime.strptime(StartDate,"%Y-%m-%d") + datetime.timedelta(days=days)
@@ -36,9 +36,9 @@ delay = 10 #seconds
 #GrandHaven back half
 #myurl = f'https://midnrreservations.com/create-booking/results?resourceLocationId=-2147483593&mapId=-2147483480&searchTabGroupId=0&bookingCategoryId=0&startDate={StartDate}&endDate={EndDate}&isReserving=true&equipmentId=-32768&subEquipmentId=-32765&partySize=4&-32761=%5B%5B1%5D,0,1%5D'
 #Pentwater front
-#myurl = f'https://midnrreservations.com/create-booking/results?resourceLocationId=-2147483555&mapId=-2147483276&searchTabGroupId=0&bookingCategoryId=0&startDate={StartDate}&endDate={EndDate}&isReserving=true&equipmentId=-32768&subEquipmentId=-32765&partySize=4&-32761=%5B%5B1%5D,0,1%5D'
+myurl = f'https://midnrreservations.com/create-booking/results?resourceLocationId=-2147483555&mapId=-2147483276&searchTabGroupId=0&bookingCategoryId=0&startDate={StartDate}&endDate={EndDate}&isReserving=true&equipmentId=-32768&subEquipmentId=-32765&partySize=4&-32761=%5B%5B1%5D,0,1%5D'
 #Pentwater Back
-myurl = f'https://midnrreservations.com/create-booking/results?resourceLocationId=-2147483555&mapId=-2147483277&searchTabGroupId=0&bookingCategoryId=0&startDate={StartDate}&endDate={EndDate}&isReserving=true&equipmentId=-32768&subEquipmentId=-32765&partySize=4&-32761=%5B%5B1%5D,0,1%5D'
+#myurl = f'https://midnrreservations.com/create-booking/results?resourceLocationId=-2147483555&mapId=-2147483277&searchTabGroupId=0&bookingCategoryId=0&startDate={StartDate}&endDate={EndDate}&isReserving=true&equipmentId=-32768&subEquipmentId=-32765&partySize=4&-32761=%5B%5B1%5D,0,1%5D'
 
 tabs = list(range(1,numberTabs*len(mySites)))
 # Build up the list of tabs 
