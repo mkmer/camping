@@ -23,10 +23,6 @@ StartDate = "2022-07-11"
 EndDateDT = datetime.datetime.strptime(StartDate,"%Y-%m-%d") + datetime.timedelta(days=days)
 EndDate = EndDateDT.strftime("%Y-%m-%d")
 
-
-
-
-
 # general variables
 ReserveButton = "addToStay"
 site = "site-label-text"
