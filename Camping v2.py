@@ -9,6 +9,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
 import time
 import msvcrt
 import datetime
@@ -43,9 +45,10 @@ myurl = f'https://midnrreservations.com/create-booking/results?resourceLocationI
 
 tabs = list(range(1,numberTabs*len(mySites)))
 # Build up the list of tabs 
+caps = DesiredCapabilities().EDGE
+caps['pageLoadStrategy'] = "none"
 
-
-driver = Edge(verbose=False,service_log_path=os.devnull)
+driver = Edge(capabilities=caps, verbose=False,service_log_path=os.devnull)
 driver.get(myurl)
 
 #wait for consent button
@@ -134,6 +137,7 @@ for x in tabs:
 
 print ("Keep the broswer Open")
 msvcrt.getch()
+driver.close
 
 
 
