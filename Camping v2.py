@@ -46,7 +46,7 @@ myurl = f'https://midnrreservations.com/create-booking/results?resourceLocationI
 tabs = list(range(1,numberTabs*len(mySites)))
 # Build up the list of tabs 
 caps = DesiredCapabilities().EDGE
-caps['pageLoadStrategy'] = "none"
+#caps['pageLoadStrategy'] = "none"
 
 driver = Edge(capabilities=caps, verbose=False,service_log_path=os.devnull)
 driver.get(myurl)
