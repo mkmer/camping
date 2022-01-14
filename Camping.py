@@ -67,7 +67,7 @@ except:
     print ("I timed out looking for the site")
 
 
-sites = driver.find_elements_by_class_name(site)
+sites = driver.find_elements(By.CLASS_NAME,site)
 for theSite in sites: # find the site we're looking for and click on it
     if theSite.text == mySites[0]:
         action_chains = ActionChains(driver)
@@ -95,7 +95,7 @@ for x in tabs:
    except:
        print ("I timed out looking for the site")
    
-   sites = driver.find_elements_by_class_name(site)
+   sites = driver.find_elements(By.CLASS_NAME,site)
    for theSite in sites: # find the site we're looking for and click on it
        if theSite.text == mySites[index]:
            action_chains = ActionChains(driver)

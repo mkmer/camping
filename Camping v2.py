@@ -9,6 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 import time
@@ -17,15 +18,15 @@ import datetime
 import os
 
 # Modify these values for your reservation
-mySites = ["150"]
-days = 13
-StartDate = "2022-07-12"
+mySites = ["157"]
+days = 11
+StartDate = "2022-07-14"
 
 # Calculate the end date
 EndDateDT = datetime.datetime.strptime(StartDate,"%Y-%m-%d") + datetime.timedelta(days=days)
 EndDate = EndDateDT.strftime("%Y-%m-%d")
 #EndDate = "2022-07-02"
-numberTabs = 8
+numberTabs = 10
 
 
 
@@ -43,12 +44,16 @@ myurl = f'https://midnrreservations.com/create-booking/results?resourceLocationI
 #Pentwater Back
 #myurl = f'https://midnrreservations.com/create-booking/results?resourceLocationId=-2147483555&mapId=-2147483277&searchTabGroupId=0&bookingCategoryId=0&startDate={StartDate}&endDate={EndDate}&isReserving=true&equipmentId=-32768&subEquipmentId=-32765&partySize=4&-32761=%5B%5B1%5D,0,1%5D'
 
+#Edge.desired_capabilities
 tabs = list(range(1,numberTabs*len(mySites)))
 # Build up the list of tabs 
-caps = DesiredCapabilities().EDGE
-#caps['pageLoadStrategy'] = "none"
+options = EdgeOptions()
+options.UseChromium = True
+options.add_experimental_option("excludeSwitches",['enable-logging'])
+options.add_argument("disable-gpu")
 
-driver = Edge(capabilities=caps, verbose=False,service_log_path=os.devnull)
+driver = Edge(options = options, service_log_path=os.devnull , verbose=False) 
+
 driver.get(myurl)
 
 #wait for consent button
@@ -71,7 +76,8 @@ except:
     print ("I timed out looking for the site")
 
 
-sites = driver.find_elements_by_class_name(site)
+#sites = driver.find_elements_by_class_name(site)
+sites = driver.find_elements(By.CLASS_NAME,site)
 for theSite in sites: # find the site we're looking for and click on it
     if theSite.text == mySites[0]:
         action_chains = ActionChains(driver)
@@ -94,6 +100,7 @@ for x in tabs:
    driver.get(myurl)
 
 #Now - select sites in tabs
+delay = 15
 for x in tabs:
    driver.switch_to.window(driver.window_handles[(x)])
    #Wait for the site map to load... not quite right but I can't figure out another way....
@@ -103,7 +110,8 @@ for x in tabs:
    except:
        print ("I timed out looking for the site")
    
-   sites = driver.find_elements_by_class_name(site)
+   #sites = driver.find_elements_by_class_name(site)
+   sites = driver.find_elements(By.CLASS_NAME,site)
    for theSite in sites: # find the site we're looking for and click on it
        if theSite.text == mySites[index]:
            action_chains = ActionChains(driver)
